@@ -4,9 +4,10 @@ from django.shortcuts import (get_object_or_404,
                               redirect, render)
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-
 from .forms import *
 from .models import *
+import csv
+from django.http import HttpResponse
 
 def student_home(request):
     student = get_object_or_404(Student, admin=request.user)
@@ -97,9 +98,6 @@ def student_chatlog_notsatisfied(request):
         "logs": notsatisfied_logs,
     }
     return render(request, "student_template/student_chatlog.html", context)
-
-from django.shortcuts import render, get_object_or_404
-from .models import Student, StudentBot
 
 def snippet(request):
     student = get_object_or_404(Student, admin=request.user)

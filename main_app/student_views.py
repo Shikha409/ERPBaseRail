@@ -140,3 +140,22 @@ def save_bot_customization(request):
         return JsonResponse({"success": True, "message": "Bot customization saved!"})
     
     return JsonResponse({"success": False, "error": "Invalid request method."})
+
+def download_logs(request):
+    # Create the HttpResponse object with CSV header
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="chat_logs.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['QID', 'Question', 'Answer', 'Feedback', 'Timestamp'])
+
+    for log in ChatLog.objects.all().order_by('-timestamp'):
+        writer.writerow([
+            log.qid,
+            log.question,
+            log.answer,
+            log.feedback or '',
+            log.timestamp.strftime("%Y-%m-%d %H:%M"),
+        ])
+
+    return response

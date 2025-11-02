@@ -56,6 +56,7 @@ urlpatterns = [
 
      path("student/snippet/", student_views.snippet, name="snippet"),
      path("save-bot-customization/", student_views.save_bot_customization, name="save_bot_customization"),
+     path('download_logs/', student_views.download_logs, name='download_logs'),
 
      path("ID/<str:company_id>/chat", views.company_chat, name="company_chat"),
     path("ID/<str:company_id>/feedback", views.submit_feedback, name="submit_feedback"),

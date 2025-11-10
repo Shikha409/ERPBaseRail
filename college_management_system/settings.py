@@ -42,6 +42,7 @@ ALLOWED_HOSTS = ['*']  # Not recommended but useful in dev mode
 # CSRF & CORS Configuration for Railway Deployment
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-4e4f.up.railway.app',
+    'https://bot.nurostem.com',
 ]
 
 # Make sure cookies are secure over HTTPS
